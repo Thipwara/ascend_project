@@ -1,0 +1,9 @@
+tasks:
+  Default:
+    command:
+      - python
+      - -m
+      - robot
+      - --outputdir
+      - results
+      - tests/
