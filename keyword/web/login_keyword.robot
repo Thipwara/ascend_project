@@ -3,7 +3,10 @@ Resource    ../../resources/web/login_resource.robot
 
 *** Keywords ***
 Open Login Page
-    Open Browser    ${BASE_URL}    ${BROWSER}
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    ${prefs}=    Create Dictionary    credentials_enable_service=${False}    profile.password_manager_enabled=${False}
+    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+    Open Browser    ${BASE_URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Title Should Be    The Internet
 
@@ -24,11 +27,13 @@ Verify Login Success
     Element Should Contain    ${SUCCESS_MSG}    You logged into a secure area!
 
 Verify Login Password Failure
+    Log Source
     Wait Until Element Is Visible    ${ERROR_MSG}    timeout=10s
     Element Should Contain    ${ERROR_MSG}    Your password is invalid!
 
 Verify Login Username Failure
     Wait Until Element Is Visible    ${ERROR_MSG}    timeout=10s
+    Log Source
     Element Should Contain    ${ERROR_MSG}    Your username is invalid!
 
 Verify Logout Success

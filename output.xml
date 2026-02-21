@@ -1,126 +1,511 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.9.6 on darwin)" generated="2026-02-20T23:11:05.321851" rpa="false" schemaversion="5">
-<suite id="s1" name="Get House Data" source="/Users/thipwara/Documents/ascend_project/tests/APIs/get_house_data.robot">
-<test id="s1-t1" name="TC01 - Get house data success" line="10">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2026-02-20T23:11:05.436261" level="INFO">Creating Session using : alias=potter_api, url=https://potterapi-fedeperin.vercel.app, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>potter_api</arg>
+<robot generator="Robot 7.0 (Python 3.9.6 on darwin)" generated="2026-02-21T18:22:58.861294" rpa="false" schemaversion="5">
+<suite id="s1" name="Login Test" source="/Users/thipwara/Documents/ascend_project/tests/web/login_test.robot">
+<test id="s1-t1" name="TC01 - Login successfully" line="11">
+<kw name="Open Login Page" owner="login_keyword" type="SETUP">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-21T18:22:58.933705" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x104455820&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-21T18:22:58.933579" elapsed="0.000141"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-02-21T18:22:58.933920" level="INFO">${prefs} = {'credentials_enable_service': False, 'profile.password_manager_enabled': False}</msg>
+<var>${prefs}</var>
+<arg>credentials_enable_service=${False}</arg>
+<arg>profile.password_manager_enabled=${False}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-02-21T18:22:58.933785" elapsed="0.000146"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-02-21T18:22:58.933979" elapsed="0.000067"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:22:58.934218" level="INFO">Opening browser 'chrome' to base url 'http://the-internet.herokuapp.com/login'.</msg>
 <arg>${BASE_URL}</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2026-02-20T23:11:05.436103" elapsed="0.001276"/>
+<arg>${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-21T18:22:58.934108" elapsed="4.369267"/>
 </kw>
-<kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2026-02-20T23:11:05.831372" level="INFO">GET Request : url=https://potterapi-fedeperin.vercel.app/en/houses?index=3 
- path_url=/en/houses?index=3 
- headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
- body=None 
- </msg>
-<msg time="2026-02-20T23:11:05.832414" level="INFO">GET Response : url=https://potterapi-fedeperin.vercel.app/en/houses?index=3 
- status=200, reason=OK 
- headers={'Access-Control-Allow-Credentials': 'true', 'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version', 'Access-Control-Allow-Methods': 'GET,OPTIONS,PATCH,DELETE,POST,PUT', 'Access-Control-Allow-Origin': '*', 'Age': '0', 'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '121', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Fri, 20 Feb 2026 16:11:05 GMT', 'Etag': 'W/"79-ok+sZMUvugXGvWyoIls67pBgnzw"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'sin1::iad1::pkwpz-1771603865651-f330830f778a'} 
- body={"house":"Slytherin","emoji":"🐍","founder":"Salazar Slytherin","colors":["green","silver"],"animal":"Snake","index":3} 
- </msg>
-<msg time="2026-02-20T23:11:05.832934" level="INFO">/Users/thipwara/Documents/ascend_project/venv/lib/python3.9/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'potterapi-fedeperin.vercel.app'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2026-02-20T23:11:05.833624" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>potter_api</arg>
-<arg>${ENDPOINT}</arg>
-<arg>params=index=${INDEX}</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.437899" elapsed="0.395940"/>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-21T18:23:03.304505" elapsed="0.342612"/>
 </kw>
-<kw name="Should Be Equal As Numbers" owner="BuiltIn">
-<msg time="2026-02-20T23:11:05.835806" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.834641" elapsed="0.001411"/>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:03.650031" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-02-21T18:23:03.647287" elapsed="0.002802"/>
 </kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-02-20T23:11:05.837373" level="INFO">${body} = {'house': 'Slytherin', 'emoji': '🐍', 'founder': 'Salazar Slytherin', 'colors': ['green', 'silver'], 'animal': 'Snake', 'index': 3}</msg>
-<var>${body}</var>
-<arg>${response.json()}</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.836466" elapsed="0.001053"/>
+<status status="PASS" start="2026-02-21T18:22:58.933261" elapsed="4.716927"/>
 </kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2026-02-20T23:11:05.838302" level="INFO">${colors} = ['green', 'silver']</msg>
-<var>${colors}</var>
-<arg>${body}[colors]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.837886" elapsed="0.000551"/>
+<kw name="Input Credentials" owner="login_keyword">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:03.651280" level="INFO">Typing text 'tomsmith' into text field 'id=username'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:03.650795" elapsed="0.076867"/>
 </kw>
-<kw name="Verify Get House Data Success" owner="get_house_data_keyword">
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${body}[house]</arg>
-<arg>${EXPECTED_HOUSE}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.839990" elapsed="0.000691"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:03.728000" level="INFO">Typing text 'SuperSecretPassword!' into text field 'id=password'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:03.727825" elapsed="0.026427"/>
 </kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${body}[emoji]</arg>
-<arg>${EXPECTED_EMOJI}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.840965" elapsed="0.000382"/>
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
+<status status="PASS" start="2026-02-21T18:23:03.650494" elapsed="0.103845"/>
 </kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${body}[founder]</arg>
-<arg>${EXPECTED_FOUNDER}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.841567" elapsed="0.000353"/>
+<kw name="Submit Login Form" owner="login_keyword">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:03.754814" level="INFO">Clicking button 'css=button[type='submit']'.</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:03.754694" elapsed="0.026620"/>
 </kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<arg>${body}[animal]</arg>
-<arg>${EXPECTED_ANIMAL}</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.842122" elapsed="0.000321"/>
+<status status="PASS" start="2026-02-21T18:23:03.754523" elapsed="0.026919"/>
 </kw>
-<kw name="Should Be Equal As Numbers" owner="BuiltIn">
-<arg>${body}[index]</arg>
-<arg>${EXPECTED_INDEX}</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.842657" elapsed="0.000339"/>
+<kw name="Verify Login Success" owner="login_keyword">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${SUCCESS_MSG}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-21T18:23:03.782348" elapsed="0.650235"/>
 </kw>
-<kw name="List Should Contain Value" owner="Collections">
-<msg time="2026-02-20T23:11:05.843502" level="INFO">False</msg>
-<arg>${colors}</arg>
-<arg>green</arg>
-<doc>Fails if the ``value`` is not found from ``list``.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.843197" elapsed="0.001609"/>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:04.440161" level="INFO">Element 'id=flash' contains text 'You logged into a secure area!'.</msg>
+<arg>${SUCCESS_MSG}</arg>
+<arg>You logged into a secure area!</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-02-21T18:23:04.432740" elapsed="0.007468"/>
 </kw>
-<kw name="List Should Contain Value" owner="Collections">
-<msg time="2026-02-20T23:11:05.845708" level="INFO">False</msg>
-<arg>${colors}</arg>
-<arg>silver</arg>
-<doc>Fails if the ``value`` is not found from ``list``.</doc>
-<status status="PASS" start="2026-02-20T23:11:05.845151" elapsed="0.000729"/>
+<status status="PASS" start="2026-02-21T18:23:03.781949" elapsed="0.658320"/>
 </kw>
-<arg>${body}</arg>
-<arg>${colors}</arg>
-<status status="PASS" start="2026-02-20T23:11:05.839068" elapsed="0.007055"/>
+<kw name="Click Logout button" owner="login_keyword">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>${LOGOUT_BUTTON}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2026-02-21T18:23:04.440572" elapsed="0.003793"/>
 </kw>
-<doc>To verify get house data api will return correct data.</doc>
-<tag>api</tag>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:04.444560" level="INFO">Clicking element 'css=a.button.secondary'.</msg>
+<arg>${LOGOUT_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:04.444450" elapsed="0.635506"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:04.440411" elapsed="0.639661"/>
+</kw>
+<kw name="Verify Logout Success" owner="login_keyword">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${SUCCESS_MSG}</arg>
+<arg>timeout=20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.080625" elapsed="0.008057"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:05.094723" level="INFO">Element 'id=flash' contains text 'You logged out of the secure area!'.</msg>
+<arg>${SUCCESS_MSG}</arg>
+<arg>You logged out of the secure area!</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.088833" elapsed="0.005943"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:05.080337" elapsed="0.014509"/>
+</kw>
+<kw name="Close Browser Session" owner="login_keyword" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.095248" elapsed="0.065442"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:05.095066" elapsed="0.065716"/>
+</kw>
+<doc>To verify that a user can login successfully when they put a correct username and password.</doc>
+<tag>login</tag>
 <tag>positive</tag>
-<status status="PASS" start="2026-02-20T23:11:05.435447" elapsed="0.411384"/>
+<tag>web</tag>
+<status status="PASS" start="2026-02-21T18:22:58.932936" elapsed="6.227911"/>
 </test>
-<doc>Test suite for Potter API - GET House Data by index
-Endpoint: GET https://potterapi-fedeperin.vercel.app/en/houses?index=3</doc>
-<status status="PASS" start="2026-02-20T23:11:05.323410" elapsed="0.525205"/>
+<test id="s1-t2" name="TC02 - Login failed - Password incorrect" line="20">
+<kw name="Open Login Page" owner="login_keyword" type="SETUP">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-21T18:23:05.161635" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x1044ca490&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.161453" elapsed="0.000197"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-02-21T18:23:05.161863" level="INFO">${prefs} = {'credentials_enable_service': False, 'profile.password_manager_enabled': False}</msg>
+<var>${prefs}</var>
+<arg>credentials_enable_service=${False}</arg>
+<arg>profile.password_manager_enabled=${False}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.161719" elapsed="0.000156"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.161928" elapsed="0.000073"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:05.162247" level="INFO">Opening browser 'chrome' to base url 'http://the-internet.herokuapp.com/login'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-21T18:23:05.162104" elapsed="4.612213"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-21T18:23:09.774623" elapsed="0.341785"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:10.119389" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.116597" elapsed="0.002840"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:05.161309" elapsed="4.958213"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:10.119847" level="INFO">Opening url 'http://the-internet.herokuapp.com/login'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.119704" elapsed="0.292626"/>
+</kw>
+<kw name="Input Credentials" owner="login_keyword">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:10.413011" level="INFO">Typing text 'tomsmith' into text field 'id=username'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.412838" elapsed="0.075473"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:10.488607" level="INFO">Typing text 'Password!'' into text field 'id=password'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.488444" elapsed="0.023434"/>
+</kw>
+<arg>${USERNAME}</arg>
+<arg>Password!'</arg>
+<status status="PASS" start="2026-02-21T18:23:10.412581" elapsed="0.099371"/>
+</kw>
+<kw name="Submit Login Form" owner="login_keyword">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:10.512399" level="INFO">Clicking button 'css=button[type='submit']'.</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.512270" elapsed="0.027410"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:10.512103" elapsed="0.027653"/>
+</kw>
+<kw name="Bypass change password button" owner="login_keyword">
+<kw name="No Operation" owner="BuiltIn">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.540090" elapsed="0.000056"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:10.539906" elapsed="0.000272"/>
+</kw>
+<kw name="Verify Login Password Failure" owner="login_keyword">
+<kw name="Log Source" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:10.541227" level="INFO">&lt;html class="no-js" lang="en"&gt;&lt;!--&lt;![endif]--&gt;&lt;head&gt;
+    &lt;script src="/js/vendor/298279967.js"&gt;&lt;/script&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;title&gt;The Internet&lt;/title&gt;
+    &lt;link href="/css/app.css" rel="stylesheet"&gt;
+    &lt;link href="/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;script src="/js/vendor/jquery-1.11.3.min.js"&gt;&lt;/script&gt;
+    &lt;script src="/js/vendor/jquery-ui-1.11.4/jquery-ui.js"&gt;&lt;/script&gt;
+    &lt;script src="/js/foundation/foundation.js"&gt;&lt;/script&gt;&lt;meta class="foundation-mq-small"&gt;&lt;meta class="foundation-mq-medium"&gt;&lt;meta class="foundation-mq-large"&gt;&lt;style&gt;&lt;/style&gt;
+    &lt;script src="/js/foundation/foundation.alerts.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      $(document).foundation();
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="row"&gt;
+      &lt;div id="flash-messages" class="large-12 columns"&gt;
+      
+        
+      
+        
+      
+        
+      
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+      &lt;a href="https://github.com/tourdedave/the-internet"&gt;&lt;img style="position: absolute; top: 0; right: 0; border: 0;" src="/img/forkme_right_green_007200.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+      &lt;div id="content" class="large-12 columns"&gt;
+        &lt;div class="example"&gt;
+  &lt;h2&gt;Login Page&lt;/h2&gt;
+  &lt;h4 class="subheader"&gt;This is where you can log into the secure area. Enter &lt;em&gt;tomsmith&lt;/em&gt; for the username and &lt;em&gt;SuperSecretPassword!&lt;/em&gt; for the password. If the information is wrong you should see error messages.&lt;/h4&gt;
+  &lt;form name="login" id="login" action="/authenticate" method="post"&gt;
+     &lt;div class="row"&gt;
+      &lt;div class="large-6 small-12 columns"&gt;
+        &lt;label for="username"&gt;Username&lt;/label&gt;
+        &lt;input type="text" name="username" id="username"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="large-6 small-12 columns"&gt;
+        &lt;label for="password"&gt;Password&lt;/label&gt;
+        &lt;input type="password" name="password" id="password"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+      &lt;button class="radius" type="submit"&gt;&lt;i class="fa fa-2x fa-sign-in"&gt; Login&lt;/i&gt;&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="page-footer" class="row"&gt;
+      &lt;div class="large-4 large-centered columns"&gt;
+        &lt;hr&gt;
+        &lt;div style="text-align: center;"&gt;Powered by &lt;a target="_blank" href="http://elementalselenium.com/"&gt;Elemental Selenium&lt;/a&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/body&gt;&lt;/html&gt;</msg>
+<doc>Logs and returns the HTML source of the current page or frame.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.540360" elapsed="0.000910"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ERROR_MSG}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-21T18:23:10.541327" elapsed="0.685565"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:11.235423" level="INFO">Element 'css=.flash.error' contains text 'Your password is invalid!'.</msg>
+<arg>${ERROR_MSG}</arg>
+<arg>Your password is invalid!</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-02-21T18:23:11.227060" elapsed="0.008419"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:10.540256" elapsed="0.695291"/>
+</kw>
+<kw name="Close Browser Session" owner="login_keyword" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-21T18:23:11.235931" elapsed="0.067737"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:11.235755" elapsed="0.068008"/>
+</kw>
+<doc>To verify that a user can login unsuccessfully when they put a correct username but wrong password.</doc>
+<tag>login</tag>
+<tag>negative</tag>
+<tag>web</tag>
+<status status="PASS" start="2026-02-21T18:23:05.161024" elapsed="6.142801"/>
+</test>
+<test id="s1-t3" name="TC03 - Login failed - Username not found" line="29">
+<kw name="Open Login Page" owner="login_keyword" type="SETUP">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-21T18:23:11.304545" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x104455b20&gt;</msg>
+<var>${options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-21T18:23:11.304405" elapsed="0.000155"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2026-02-21T18:23:11.304935" level="INFO">${prefs} = {'credentials_enable_service': False, 'profile.password_manager_enabled': False}</msg>
+<var>${prefs}</var>
+<arg>credentials_enable_service=${False}</arg>
+<arg>profile.password_manager_enabled=${False}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2026-02-21T18:23:11.304803" elapsed="0.000144"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-02-21T18:23:11.305001" elapsed="0.000075"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:11.305278" level="INFO">Opening browser 'chrome' to base url 'http://the-internet.herokuapp.com/login'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-02-21T18:23:11.305149" elapsed="1.599356"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-21T18:23:12.904785" elapsed="2.876567"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:15.784260" level="INFO">Page title is 'The Internet'.</msg>
+<arg>The Internet</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-02-21T18:23:15.781664" elapsed="0.002642"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:11.304270" elapsed="4.480118"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:15.784690" level="INFO">Opening url 'http://the-internet.herokuapp.com/login'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-21T18:23:15.784561" elapsed="0.298162"/>
+</kw>
+<kw name="Input Credentials" owner="login_keyword">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:16.083485" level="INFO">Typing text 'tomholland' into text field 'id=username'.</msg>
+<arg>${USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.083285" elapsed="0.079811"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:16.163386" level="INFO">Typing text 'Password!' into text field 'id=password'.</msg>
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.163227" elapsed="0.024021"/>
+</kw>
+<arg>tomholland</arg>
+<arg>Password!</arg>
+<status status="PASS" start="2026-02-21T18:23:16.083004" elapsed="0.104321"/>
+</kw>
+<kw name="Submit Login Form" owner="login_keyword">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:16.187737" level="INFO">Clicking button 'css=button[type='submit']'.</msg>
+<arg>${LOGIN_BUTTON}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.187627" elapsed="0.025523"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:16.187478" elapsed="0.025741"/>
+</kw>
+<kw name="Verify Login Username Failure" owner="login_keyword">
+<kw name="Log Source" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:16.214652" level="INFO">&lt;html class="no-js" lang="en"&gt;&lt;!--&lt;![endif]--&gt;&lt;head&gt;
+    &lt;script src="/js/vendor/298279967.js"&gt;&lt;/script&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;title&gt;The Internet&lt;/title&gt;
+    &lt;link href="/css/app.css" rel="stylesheet"&gt;
+    &lt;link href="/css/font-awesome.css" rel="stylesheet"&gt;
+    &lt;script src="/js/vendor/jquery-1.11.3.min.js"&gt;&lt;/script&gt;
+    &lt;script src="/js/vendor/jquery-ui-1.11.4/jquery-ui.js"&gt;&lt;/script&gt;
+    &lt;script src="/js/foundation/foundation.js"&gt;&lt;/script&gt;&lt;meta class="foundation-mq-small"&gt;&lt;meta class="foundation-mq-medium"&gt;&lt;meta class="foundation-mq-large"&gt;&lt;style&gt;&lt;/style&gt;
+    &lt;script src="/js/foundation/foundation.alerts.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      $(document).foundation();
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="row"&gt;
+      &lt;div id="flash-messages" class="large-12 columns"&gt;
+      
+        
+      
+        
+      
+        
+      
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+      &lt;a href="https://github.com/tourdedave/the-internet"&gt;&lt;img style="position: absolute; top: 0; right: 0; border: 0;" src="/img/forkme_right_green_007200.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+      &lt;div id="content" class="large-12 columns"&gt;
+        &lt;div class="example"&gt;
+  &lt;h2&gt;Login Page&lt;/h2&gt;
+  &lt;h4 class="subheader"&gt;This is where you can log into the secure area. Enter &lt;em&gt;tomsmith&lt;/em&gt; for the username and &lt;em&gt;SuperSecretPassword!&lt;/em&gt; for the password. If the information is wrong you should see error messages.&lt;/h4&gt;
+  &lt;form name="login" id="login" action="/authenticate" method="post"&gt;
+     &lt;div class="row"&gt;
+      &lt;div class="large-6 small-12 columns"&gt;
+        &lt;label for="username"&gt;Username&lt;/label&gt;
+        &lt;input type="text" name="username" id="username"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="large-6 small-12 columns"&gt;
+        &lt;label for="password"&gt;Password&lt;/label&gt;
+        &lt;input type="password" name="password" id="password"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+      &lt;button class="radius" type="submit"&gt;&lt;i class="fa fa-2x fa-sign-in"&gt; Login&lt;/i&gt;&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="page-footer" class="row"&gt;
+      &lt;div class="large-4 large-centered columns"&gt;
+        &lt;hr&gt;
+        &lt;div style="text-align: center;"&gt;Powered by &lt;a target="_blank" href="http://elementalselenium.com/"&gt;Elemental Selenium&lt;/a&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  
+
+&lt;/body&gt;&lt;/html&gt;</msg>
+<doc>Logs and returns the HTML source of the current page or frame.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.213512" elapsed="0.001474"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${ERROR_MSG}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.215346" elapsed="0.549503"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2026-02-21T18:23:16.776646" level="INFO">Element 'css=.flash.error' contains text 'Your username is invalid!'.</msg>
+<arg>${ERROR_MSG}</arg>
+<arg>Your username is invalid!</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.765402" elapsed="0.011314"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:16.213367" elapsed="0.563428"/>
+</kw>
+<kw name="Close Browser Session" owner="login_keyword" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-21T18:23:16.777191" elapsed="0.064689"/>
+</kw>
+<status status="PASS" start="2026-02-21T18:23:16.777016" elapsed="0.064943"/>
+</kw>
+<doc>To verify that a user can login unsuccessfully when they put a username that did not exist.</doc>
+<tag>login</tag>
+<tag>negative</tag>
+<tag>web</tag>
+<status status="PASS" start="2026-02-21T18:23:11.303992" elapsed="5.538026"/>
+</test>
+<doc>Test suite for login functionality on The Internet Herokuapp
+URL: http://the-internet.herokuapp.com/login</doc>
+<status status="PASS" start="2026-02-21T18:22:58.861822" elapsed="17.980490"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">api</stat>
+<stat pass="3" fail="0" skip="0">login</stat>
+<stat pass="2" fail="0" skip="0">negative</stat>
 <stat pass="1" fail="0" skip="0">positive</stat>
+<stat pass="3" fail="0" skip="0">web</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Get House Data">Get House Data</stat>
+<stat pass="3" fail="0" skip="0" id="s1" name="Login Test">Login Test</stat>
 </suite>
 </statistics>
 <errors>
