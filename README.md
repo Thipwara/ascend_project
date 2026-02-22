@@ -86,6 +86,10 @@ robot --outputdir results tests/apis/
 robot --outputdir results tests/web/    
 ```
 
+### 4. Close Virtual Environment
+```bash
+deactivate
+```
 ## View Results
 
 After running the test, the results file will be in the `results/` folder:
