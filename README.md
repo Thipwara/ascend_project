@@ -1,16 +1,28 @@
 # Automated Login Test — The Internet Herokuapp
+Automated Test Login for [The Internet Herokuapp](http://the-internet.herokuapp.com/login) by using 
+**Robot Framework** and **SeleniumLibrary**
 
-โปรเจกต์ทดสอบอัตโนมัติสำหรับหน้า Login ของ [The Internet Herokuapp](http://the-internet.herokuapp.com/login) โดยใช้ **Robot Framework** และ **SeleniumLibrary**
-
-## โครงสร้างโปรเจกต์
+## Project Structure
 
 ```
 ascend_project/
+├── keyword/
+│   ├── web/
+│   │   └── login_keyword.robot   # Keywords
+│   └── apis/
+│       └── get_house_data_keyword.robot   # Keywords
 ├── resources/
-│   └── login_resource.robot   # Keywords และ Variables ที่ใช้ร่วมกัน
+│   ├── web/
+│   │   └── login_resource.robot   # Variables
+│   └── apis/
+│       └── get_house_data_resource.robot   # Variables
 ├── results/                   # ผลลัพธ์การทดสอบ (สร้างอัตโนมัติ)
 ├── tests/
-│   └── login_test.robot       # Test Suite หลัก
+│   ├── web/
+│   │   └── login_test.robot       # Test Suite for web testing
+│   └── apis/
+│       └── get_house_data_test.robot       # Test Suite for API testing
+├── venv/                          # Virtual environment
 ├── requirements.txt           # Python dependencies
 ├── robot.yaml                 # Robot Framework config
 └── README.md
@@ -18,58 +30,74 @@ ascend_project/
 
 ## Test Cases
 
+### Web Testing
 | Test Case | Description | Tag |
 |-----------|-------------|-----|
-| TC01 - Login With Valid Credentials | Login สำเร็จด้วย username/password ที่ถูกต้อง | positive |
-| TC02 - Login With Invalid Username | Login ล้มเหลวด้วย username ที่ผิด | negative |
-| TC03 - Login With Invalid Password | Login ล้มเหลวด้วย password ที่ผิด | negative |
-| TC04 - Login With Empty Credentials | Login ล้มเหลวเมื่อไม่กรอกข้อมูล | negative |
+| TC01 - Login successfully | To verify that a user can login successfully when they put a correct username and password. | positive |
+| TC02 - Login failed - Password incorrect | To verify that a user can login unsuccessfully when they put a correct username but wrong password. | negative |
+| TC03 - Login failed - Username not found | To verify that a user can login unsuccessfully when they put a username that did not exist. | negative |
 
-## การติดตั้ง
+### API Testing
+| Test Case | Description | Tag |
+|-----------|-------------|-----|
+| TC01 - Get house data success | To verify get house data api will return correct data. | positive |
+| TC02 - Get house data but user not found | To verify get house data api from invalid index. The api will return 404 not found. | negative | 
 
-### 1. สร้าง Virtual Environment (แนะนำ)
+## Installation
+
+### 1. Create Virtual Environment (recommended)
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 2. ติดตั้ง Dependencies
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. ติดตั้ง ChromeDriver (ผ่าน webdriver-manager)
-ChromeDriver จะถูกดาวน์โหลดอัตโนมัติเมื่อรันเทส
+### 3. Install ChromeDriver (via webdriver-manager)
+ChromeDriver will be downloaded automatically when running the test.
 
-## การรันเทส
+## Running Tests
 
-### รันทุก Test Case
+### Run all Test Cases
 ```bash
 robot --outputdir results tests/
 ```
 
-### รันเฉพาะ Positive Test
+### Run only Positive Test
 ```bash
 robot --outputdir results --include positive tests/
 ```
 
-### รันเฉพาะ Negative Test
+### Run only Negative Test
 ```bash
 robot --outputdir results --include negative tests/
 ```
 
-## การดูผลลัพธ์
+### Run only API Test
+```bash
+robot --outputdir results tests/apis/
+```
 
-หลังจากรันเทส ไฟล์ผลลัพธ์จะอยู่ในโฟลเดอร์ `results/`:
-- `report.html` — รายงานสรุป (เปิดในเบราว์เซอร์)
-- `log.html` — Log โดยละเอียด
-- `output.xml` — ผลลัพธ์ในรูปแบบ XML
+### Run only Web Test
+```bash
+robot --outputdir results tests/web/    
+```
+
+## View Results
+
+After running the test, the results file will be in the `results/` folder:
+- `report.html` — Summary report (open in browser)
+- `log.html` — Detailed log
+- `output.xml` — Results in XML format
 
 ```bash
 open results/report.html
 ```
 
-## Credentials ที่ใช้ทดสอบ
+## Credentials for Testing
 
 | Field    | Value                |
 |----------|----------------------|
