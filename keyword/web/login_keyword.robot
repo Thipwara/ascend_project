@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../../resources/web/login_resource.robot
+Resource    ../../resources/web/lang/login_localize.robot
 
 *** Keywords ***
 Open Login Page
@@ -24,21 +25,21 @@ Click Logout button
 
 Verify Login Success
     Wait Until Element Is Visible    ${SUCCESS_MSG}    timeout=10s
-    Element Should Contain    ${SUCCESS_MSG}    You logged into a secure area!
+    Element Should Contain    ${SUCCESS_MSG}    ${MSG_LOGIN_SUCCESS}[${LANGUAGE}]
 
 Verify Login Password Failure
     Log Source
     Wait Until Element Is Visible    ${ERROR_MSG}    timeout=10s
-    Element Should Contain    ${ERROR_MSG}    Your password is invalid!
+    Element Should Contain    ${ERROR_MSG}    ${MSG_LOGIN_FAIL_PASSWORD}[${LANGUAGE}]
 
 Verify Login Username Failure
     Wait Until Element Is Visible    ${ERROR_MSG}    timeout=10s
     Log Source
-    Element Should Contain    ${ERROR_MSG}    Your username is invalid!
+    Element Should Contain    ${ERROR_MSG}    ${MSG_LOGIN_FAIL_USERNAME}[${LANGUAGE}]
 
 Verify Logout Success
     Wait Until Element Is Visible    ${SUCCESS_MSG}    timeout=20s
-    Element Should Contain    ${SUCCESS_MSG}    You logged out of the secure area!   
+    Element Should Contain    ${SUCCESS_MSG}    ${MSG_LOGOUT_SUCCESS}[${LANGUAGE}]
 
 Close Browser Session
     Close Browser

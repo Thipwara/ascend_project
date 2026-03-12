@@ -2,10 +2,13 @@
 Documentation     Test suite for login functionality on The Internet Herokuapp
 ...               URL: http://the-internet.herokuapp.com/login
 Resource          ../../resources/web/login_resource.robot
+Resource          ../../resources/web/lang/login_localize.robot
 Resource          ../../keyword/web/login_keyword.robot
 Test Setup        Open Login Page
 Test Teardown     Close Browser Session
 Test Tags         login    web
+
+
 
 *** Test Cases ***
 TC01 - Login successfully
